@@ -7,13 +7,13 @@ class mongodb::repo::apt inherits mongodb::repo {
 
   if($::mongodb::repo::ensure == 'present' or $::mongodb::repo::ensure == true) {
     apt::source { 'mongodb':
-      location => $::mongodb::repo::location,
-      release  => $::mongodb::repo::release,
-      repos    => $::mongodb::repo::repos,
-      key      => $::mongodb::repo::key,
+      location    => $::mongodb::repo::location,
+      release     => $::mongodb::repo::release,
+      repos       => $::mongodb::repo::repos,
+      key         => $::mongodb::repo::key,
+      include_src => false,
+      before      => Package[$::mongodb::params::server_package_name]
     }
-
-    Apt::Source['mongodb']->Package<|tag == 'mongodb'|>
   }
   else {
     apt::source { 'mongodb':
