@@ -213,7 +213,6 @@ class mongodb::server::config {
       ensure   => directory,
       mode     => '0755',
       owner    => $user,
-      group    => $group,
       recurse  => true,
       purge    => false,
       checksum => 'none',
