@@ -211,9 +211,10 @@ class mongodb::server::config {
 
     file { $dbpath:
       ensure   => directory,
-      mode     => '0755',
+      mode     => '0750',
       owner    => $user,
-      recurse  => true,
+      group    => $group,
+      recurse  => false,
       purge    => false,
       checksum => 'none',
       require  => File[$config],
